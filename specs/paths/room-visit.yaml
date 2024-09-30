@@ -1,0 +1,141 @@
+visited-rooms_{user_id}:
+  get:
+    summary: ユーザーの訪問ルーム取得
+    description: ユーザーの訪問ルーム取得
+    tags: ["room-visits"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "visited", "left"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - $ref: "#/components/parameters/UserId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/VisitedRoomsResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/VisitedRoomsWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+visitors_{chat_room_id}:
+  get:
+    summary: ルームの訪問ユーザー取得
+    description: ルームの訪問ユーザー取得
+    tags: ["room-visits"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "visited", "left"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - $ref: "#/components/parameters/ChatRoomId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/VisitorsResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/VisitorsWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+users_{chat_room_id}:
+  get:
+    summary: ルーム内ユーザー取得
+    description: ルーム内ユーザー取得
+    tags: ["room-visits"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "visited"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - $ref: "#/components/parameters/ChatRoomId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/InUsersResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/room-visit.yaml#/InUsersWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+room-in_{chat_room_id}:
+  post:
+    summary: ルームへ入室
+    description: ルームへ入室
+    tags: ["room-visits"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+    requestBody:
+      description: 送信データ
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              keyword: { type: string, nullable: true, default: "key12345" }
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+room-out:
+  post:
+    summary: ルームの退室
+    description: ルームの退室
+    tags: ["room-visits"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      description: ユーザーID
+      required: true
+      schema:
+        type: string
+        example: "9a5fb3cd-80c7-4d2b-971f-2f1a0ef782f7"
+    ChatRoomId:
+      name: chat_room_id
+      in: path
+      description: チャットルームID
+      required: true
+      schema:
+        type: string
+        example: "9a71a194-d6bf-44aa-a781-72773d02bb22"

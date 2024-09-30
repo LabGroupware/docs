@@ -1,0 +1,38 @@
+PaginationParam:
+  name: pagination
+  in: query
+  description: ページネーションの種類の指定
+  schema:
+    type: string
+    enum: ["numbered", "cursor", "none"]
+    default: "none"
+LimitParam:
+  name: limit
+  in: query
+  description: 取得するデータ数の指定
+  schema:
+    type: integer
+    default: 20
+OffsetParam:
+  name: offset
+  in: query
+  description: 取得するデータのオフセット
+  schema:
+    type: integer
+    default: 0
+CursorParam:
+  name: cursor
+  in: query
+  description: ページのカーソル
+  schema:
+    type: string
+    nullable: true
+    default: ""
+WithTotalCountParam:
+  name: with_count
+  in: query
+  description: 合計のデータ数付与
+  schema:
+    type: string
+    enum: ["true", "false"]
+    default: "false"

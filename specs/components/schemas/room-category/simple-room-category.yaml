@@ -1,0 +1,22 @@
+SimpleRoomCategory:
+  type: object
+  properties:
+    roomCategoryId:
+      type: number
+      example: 10
+      readOnly: true
+    name:
+      type: string
+      example: "Sports"
+
+NullableSimpleRoomCategory:
+  type: object
+  nullable: true
+  properties:
+    roomCategoryId:
+      type: number
+      example: 10
+      readOnly: true
+    name:
+      type: string
+      example: "Sports"

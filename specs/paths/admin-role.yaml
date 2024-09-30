@@ -1,0 +1,55 @@
+permissions_{admin_id}:
+  post:
+    summary: 管理者への権限付与
+    description: 管理者への権限付与
+    tags: ["admin-roles"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/AdminId"
+    responses:
+      "200":
+        $ref: "../components/responses/number-data-response.yaml#/NumberDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  delete:
+    summary: 管理者の権限剥奪
+    description: 管理者の権限剥奪
+    tags: ["admin-roles"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/AdminId"
+    responses:
+      "200":
+        $ref: "../components/responses/number-data-response.yaml#/NumberDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+permissions_{admin_id}_all:
+  delete:
+    summary: 管理者の全権限剥奪
+    description: 管理者の全権限剥奪
+    tags: ["admin-roles"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/AdminId"
+    responses:
+      "200":
+        $ref: "../components/responses/number-data-response.yaml#/NumberDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    AdminId:
+      name: admin_id
+      in: path
+      description: 管理者ユーザーID
+      required: true
+      schema:
+        type: string
+        example: "9a5fb3cd-6113-4efa-8e2d-a88debba9897"

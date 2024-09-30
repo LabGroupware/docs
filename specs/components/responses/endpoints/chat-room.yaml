@@ -1,0 +1,69 @@
+ChatRoomsResponse:
+  description: 複数チャットルームレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+            items:
+              $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+ChatRoomsWithTotalCountResponse:
+  description: 複数チャットルームレスポンスデータ(合計データ数付与)
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
+              totalCount:
+                type: integer
+                example: 120
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+ChatRoomResponse:
+  description: チャットルームレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            $ref: "../../schemas/chat-room/chat-room.yaml#/ChatRoom"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+ChatRoomCardResponse:
+  description: チャットルームカードレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }

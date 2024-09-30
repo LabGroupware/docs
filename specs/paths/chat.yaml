@@ -1,0 +1,129 @@
+chats_{chat_room_id}:
+  get:
+    summary: 複数チャットの取得(現在のチャットルームである必要あり)
+    description: 複数チャットの取得(現在のチャットルームである必要あり)
+    tags: ["chats"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithoutTotalCountParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/CursorPaginationParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/CursorParam"
+      - $ref: "#/components/parameters/ChatRoomId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat.yaml#/ChatsResponse"
+      "200(with other data)":
+        $ref: "../components/responses/endpoints/chat.yaml#/ChatsWithDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  post:
+    summary: 新規チャット(現在のチャットルームである必要あり)
+    description: 新規チャット(現在のチャットルームである必要あり)
+    tags: ["chats"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+    requestBody:
+      description: 新規登録データ
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [content]
+            properties:
+              content: { type: string, default: "hello" }
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat.yaml#/ChatResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+chats_{chat_room_id}_{chat_id}:
+  get:
+    summary: チャットの取得(現在のチャットルームである必要あり)
+    description: チャットの取得(現在のチャットルームである必要あり)
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+      - $ref: "#/components/parameters/ChatId"
+    tags: ["chats"]
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat.yaml#/ChatResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  put:
+    summary: 送信チャットの更新(現在のチャットルームである必要あり)
+    description: 送信チャットの更新(現在のチャットルームである必要あり)
+    tags: ["chats"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+      - $ref: "#/components/parameters/ChatId"
+    requestBody:
+      description: 更新データ
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [content]
+            properties:
+              content: { type: string, default: "hello" }
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  delete:
+    summary: 送信チャットの削除(現在のチャットルームである必要あり)
+    description: 送信チャットの削除(現在のチャットルームである必要あり)
+    tags: ["chats"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+      - $ref: "#/components/parameters/ChatId"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    ChatRoomId:
+      name: chat_room_id
+      in: path
+      description: チャットルームID
+      required: true
+      schema:
+        type: string
+        example: "9a71a194-d6bf-44aa-a781-72773d02bb22"
+    ChatId:
+      name: chat_id
+      in: path
+      description: チャットID
+      required: true
+      schema:
+        type: string
+        example: "01hdr8x2y7y772v18bdv7gdspp"

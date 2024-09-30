@@ -1,0 +1,63 @@
+ChatsResponse:
+  description: 複数チャットレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+            items:
+              $ref: "../../schemas/chat/chat.yaml#/Chat"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+ChatsWithDataResponse:
+  description: 複数チャットレスポンスデータ(付与データあり, total_countもしくはpaginationを指定した場合)
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/chat/chat.yaml#/Chat"
+              totalCount:
+                type: integer
+                nullable: true
+                example: 120
+              nextCursor:
+                type: string
+                nullable: true
+                example: "eyJ0X2NoYXRzX3BrZXkiOjUzMCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ"
+              prevCursor:
+                type: string
+                nullable: true
+                example: null
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+ChatResponse:
+  description: チャットレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            $ref: "../../schemas/chat/chat.yaml#/Chat"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }

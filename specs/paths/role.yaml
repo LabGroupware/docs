@@ -1,0 +1,52 @@
+roles:
+  get:
+    summary: 複数ロールの取得
+    description: 複数ロールの取得
+    tags: ["roles"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["name"]
+          default: "name"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/role.yaml#/RolesResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/role.yaml#/RolesWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+roles_{role_id}:
+  get:
+    summary: ロールの取得
+    description: ロールの取得
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/RoleIdId"
+    tags: ["roles"]
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/role.yaml#/RoleResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+components:
+  parameters:
+    RoleIdId:
+      name: role_id
+      in: path
+      description: ロールID
+      required: true
+      schema:
+        type: integer
+        example: 1

@@ -1,0 +1,54 @@
+RoomCategoriesResponse:
+  description: 複数ルームカテゴリーレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+            items:
+              $ref: "../../schemas/room-category/simple-room-category.yaml#/SimpleRoomCategory"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+RoomCategoriesWithTotalCountResponse:
+  description: 複数ルームカテゴリーレスポンスデータ(合計データ数付与)
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/room-category/simple-room-category.yaml#/SimpleRoomCategory"
+              totalCount:
+                type: integer
+                example: 120
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+RoomCategoryResponse:
+  description: ルームカテゴリーレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            $ref: "../../schemas/room-category/room-category.yaml#/RoomCategory"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }

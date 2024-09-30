@@ -1,0 +1,79 @@
+FavoritesResponse:
+  description: お気に入りルームレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+            items:
+              $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+FavoritesWithTotalCountResponse:
+  description: お気に入りルームレスポンスデータ(合計データ数付与)
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
+              totalCount:
+                type: integer
+                example: 120
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+FavorsResponse:
+  description: お気に入りユーザーレスポンスデータ
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: array
+            items:
+              $ref: "../../schemas/user/user-card.yaml#/UserCard"
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }
+
+FavorsWithTotalCountResponse:
+  description: お気に入りユーザーレスポンスデータ(合計データ数付与)
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [success, data, code, message, errorAttributes]
+        properties:
+          success: { type: boolean, example: true }
+          data:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../../schemas/user/user-card.yaml#/UserCard"
+              totalCount:
+                type: integer
+                example: 120
+          code: { type: integer, example: 0 }
+          message: { type: string, example: "OK" }
+          errorAttributes: { type: array, maximum: 0, example: [] }

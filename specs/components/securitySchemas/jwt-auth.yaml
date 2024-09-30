@@ -1,0 +1,5 @@
+JWT-Auth:
+  type: http
+  description: jwtによる認証
+  scheme: bearer
+  bearerFormat: JWT

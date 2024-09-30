@@ -1,0 +1,6 @@
+5XX-ServerErrorResponse:
+  description: サーバー上のエラーもしくは予期しないエラーレスポンスデータ
+  content:
+    application/json:
+      schema:
+        $ref: "../schemas/server-error.yaml#/ServerError"

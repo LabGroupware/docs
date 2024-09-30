@@ -1,0 +1,130 @@
+chat-rooms:
+  get:
+    summary: 複数チャットルームの取得
+    description: 複数チャットルームの取得
+    tags: ["chat-rooms"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["update", "create", "in", "favorite", "name", "active", "chat"]
+          default: "update"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - name: search
+        in: query
+        description: 検索文字列
+        schema:
+          type: string
+          default: ""
+      - name: search_type
+        in: query
+        description: 検索対象（名前検索なら部分一致、ID検索なら完全一致）
+        schema:
+          type: string
+          enum: ["name", "id"]
+          default: "name"
+      - name: is_lock
+        in: query
+        description: ルームキーが必要か
+        schema:
+          type: string
+          enum: ["all", "true", "false"]
+          default: "all"
+      - name: is_favorite
+        in: query
+        description: お気に入りルームか
+        schema:
+          type: string
+          enum: ["all", "true"]
+          default: "all"
+      - name: categories
+        in: query
+        description: 関連カテゴリー(+つなぎで)
+        schema:
+          type: string
+          default: "1+2"
+      - name: category_select_type
+        in: query
+        description: 関連カテゴリーの関連度の指定(allならすべての指定カテゴリーを含む、anyならどれかを含む)
+        schema:
+          type: string
+          enum: ["any", "all"]
+          default: "any"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat-room.yaml#/ChatRoomsResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/chat-room.yaml#/ChatRoomsWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  post:
+    summary: チャットルームの新規登録
+    description: チャットルームの新規登録
+    tags: ["chat-rooms"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    requestBody:
+      description: 新規登録データ
+      required: true
+      content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [name, categories]
+              properties:
+                name: { type: string, default: "作成ルーム" }
+                categories:
+                  type: array
+                  example: [1, 3]
+                  items:
+                    type: integer
+                coverPhoto:
+                  type: string
+                  format: binary
+                roomKey:
+                  { type: string, format: "password", default: "key12345" }
+            # encoding:
+            #   categories:
+            #     style: form
+            #     explode: true
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat-room.yaml#/ChatRoomResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+chat-rooms_{chat_room_id}:
+  get:
+    summary: チャットルームの取得
+    description: チャットルームの取得
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/ChatRoomId"
+    tags: ["chat-rooms"]
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/chat-room.yaml#/ChatRoomCardResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    ChatRoomId:
+      name: chat_room_id
+      in: path
+      description: チャットルームID
+      required: true
+      schema:
+        type: string
+        example: "9a71a194-d6bf-44aa-a781-72773d02bb22"

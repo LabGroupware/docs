@@ -1,0 +1,17 @@
+RequestError:
+  type: object
+  required: [success, data, code, message, errorAttributes]
+  properties:
+    success: { type: boolean, example: false }
+    data: { type: array, nullable: true, example: null }
+    code: { type: integer, example: 2 }
+    message: { type: string, example: "バリデーションエラーです" }
+    errorAttributes:
+      type: array
+      items:
+        type: object
+        example:
+          {
+            name: ["15文字以内で入力してください"],
+            age: ["0より大きい数字を入力してください"],
+          }

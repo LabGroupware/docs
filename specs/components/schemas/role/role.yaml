@@ -1,0 +1,10 @@
+Role:
+  type: object
+  properties:
+    roleId:
+      type: number
+      example: 11
+      readOnly: true
+    name:
+      type: string
+      example: "role edit"

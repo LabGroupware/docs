@@ -1,0 +1,97 @@
+followees_{user_id}:
+  get:
+    summary: ユーザーのフォロー取得
+    description: ユーザーのフォロー取得
+    tags: ["follows"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "name"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - $ref: "#/components/parameters/UserId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/follow.yaml#/FolloweesResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/follow.yaml#/FolloweesWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+followers_{user_id}:
+  get:
+    summary: ユーザーのフォロワー取得
+    description: ユーザーのフォロワー取得
+    tags: ["follows"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "name"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+      - $ref: "#/components/parameters/UserId"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/follow.yaml#/FollowersResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/follow.yaml#/FollowersWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+follows_{user_id}:
+  post:
+    summary: ユーザーのフォロー
+    description: ユーザーのフォロー
+    tags: ["follows"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/UserId"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  delete:
+    summary: ユーザーのフォロー解除
+    description: ユーザーのフォロー解除
+    tags: ["follows"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/UserId"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      description: ユーザーID
+      required: true
+      schema:
+        type: string
+        example: "9a5fb3cd-80c7-4d2b-971f-2f1a0ef782f7"

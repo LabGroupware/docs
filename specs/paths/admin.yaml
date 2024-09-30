@@ -1,0 +1,123 @@
+admins:
+  get:
+    summary: 複数管理者ユーザーの取得
+    description: 複数管理者ユーザーの取得
+    tags: ["admins"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "name", "permisssion"]
+          default: "create"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/admin.yaml#/AdminsResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/admin.yaml#/AdminsWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  post:
+    summary: 管理者ユーザーの新規登録
+    description: 管理者ユーザーの新規登録
+    tags: ["admins"]
+    parameters:
+        - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    requestBody:
+      description: 新規登録データ
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [loginId, password, passwordConfirmation, nickname]
+            properties:
+              loginId: { type: string, default: "adminadmin" }
+              password:
+                { type: string, format: "password", default: "admintest" }
+              passwordConfirmation:
+                { type: string, format: "password", default: "admintest" }
+              nickname: { type: string, default: "作成 管理者ユーザー" }
+              profilePhoto:
+                type: string
+                format: binary
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/admin.yaml#/AdminResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  put:
+    summary: 認証管理者ユーザー情報の更新
+    description: 認証管理者ユーザー情報の更新
+    tags: ["admins"]
+    parameters:
+        - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    requestBody:
+      description: 更新データ
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required: [nickname]
+            properties:
+              nickname: { type: string, default: "更新後 管理者ユーザー" }
+              profilePhoto:
+                type: string
+                format: binary
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  delete:
+    summary: 認証管理者ユーザーの削除
+    description: 認証管理者ユーザーの削除
+    tags: ["admins"]
+    parameters:
+        - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+admins_{admin_id}:
+  get:
+    summary: 管理者ユーザーの取得
+    description: 管理者ユーザーの取得
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/AdminId"
+    tags: ["admins"]
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/admin.yaml#/AdminResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    AdminId:
+      name: admin_id
+      in: path
+      description: 管理者ユーザーID
+      required: true
+      schema:
+        type: string
+        example: "9a5fb3cd-6113-4efa-8e2d-a88debba9897"

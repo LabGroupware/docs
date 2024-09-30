@@ -1,0 +1,54 @@
+SimpleChat:
+  type: object
+  properties:
+    chatId:
+      type: string
+      example: "01hdr8x2y7y772v18bdv7gdspp"
+      readOnly: true
+    userId:
+      type: string
+      example: "9a71a194-d6bf-44aa-a781-72773d02bb22"
+      nullable: true
+    chatRoomId:
+      type: string
+      example: "9a5fb3cd-c64c-433a-bcbd-849eb3ccbadc"
+      nullable: true
+    content:
+      type: string
+      example: "hello!"
+    createdAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"
+    updatedAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"
+
+NullableSimpleChat:
+  type: object
+  nullable: true
+  properties:
+    chatId:
+      type: string
+      example: "01hdr8x2y7y772v18bdv7gdspp"
+      readOnly: true
+    userId:
+      type: string
+      example: "9a71a194-d6bf-44aa-a781-72773d02bb22"
+      nullable: true
+    chatRoomId:
+      type: string
+      example: "9a5fb3cd-c64c-433a-bcbd-849eb3ccbadc"
+      nullable: true
+    content:
+      type: string
+      example: "hello!"
+    createdAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"
+    updatedAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"

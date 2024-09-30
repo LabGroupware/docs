@@ -1,0 +1,22 @@
+SimpleRole:
+  type: object
+  properties:
+    roleId:
+      type: number
+      example: 11
+      readOnly: true
+    name:
+      type: string
+      example: "role edit"
+
+NullableSimpleRole:
+  type: object
+  nullable: true
+  properties:
+    roleId:
+      type: number
+      example: 11
+      readOnly: true
+    name:
+      type: string
+      example: "role edit"

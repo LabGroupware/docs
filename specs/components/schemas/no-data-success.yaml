@@ -1,0 +1,10 @@
+NoDataSuccess:
+  description: 成功時の空データ
+  type: object
+  required: [success, data, code, message, errorAttributes]
+  properties:
+    success: { type: boolean, example: true }
+    data: { type: array, nullable: true, example: [] }
+    code: { type: integer, example: 0 }
+    message: { type: string, example: "OK" }
+    errorAttributes: { type: array, maximum: 0, example: [] }

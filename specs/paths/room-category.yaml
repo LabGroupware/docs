@@ -1,0 +1,114 @@
+room-categories:
+  get:
+    summary: 複数ルームカテゴリーの取得
+    description: 複数ルームカテゴリーの取得
+    tags: ["room-categories"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OrderOptParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["name", "room"]
+          default: "name"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-category.yaml#/RoomCategoriesResponse"
+      "200(with total_count)":
+        $ref: "../components/responses/endpoints/room-category.yaml#/RoomCategoriesWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  post:
+    summary: ルームカテゴリーの新規登録
+    description: ルームカテゴリーの新規登録
+    tags: ["room-categories"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+    requestBody:
+      description: 新規登録データ
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [name]
+            properties:
+              name: { type: string, default: "新規カテゴリー" }
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-category.yaml#/RoomCategoryResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+room-categories_{room_category_id}:
+  get:
+    summary: ルームカテゴリーの取得
+    description: ルームカテゴリーの取得
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/RoomCategoryId"
+    tags: ["room-categories"]
+    responses:
+      "200":
+        $ref: "../components/responses/endpoints/room-category.yaml#/RoomCategoryResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  put:
+    summary: ルームカテゴリー情報の更新
+    description: ルームカテゴリー情報の更新
+    tags: ["room-categories"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/RoomCategoryId"
+    requestBody:
+      description: 更新データ
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [name]
+            properties:
+              name: { type: string, default: "更新カテゴリー" }
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  delete:
+    summary: ルームカテゴリーの削除
+    description: ルームカテゴリーの削除
+    tags: ["room-categories"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "#/components/parameters/RoomCategoryId"
+    responses:
+      "200":
+        $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    RoomCategoryId:
+      name: room_category_id
+      in: path
+      description: ルームカテゴリーID
+      required: true
+      schema:
+        type: integer
+        example: 20

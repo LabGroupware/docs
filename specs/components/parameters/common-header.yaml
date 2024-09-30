@@ -1,0 +1,16 @@
+LangHeader: 
+  name: Accept-Language
+  in: header
+  description: 使用言語
+  schema:
+    type: string
+    enum: ["ja"]
+    default: "ja"
+RequestTypeHeader: 
+  name: X-Request-Type
+  in: header
+  description: コマンドアクション時に指定することで, 同期/非同期のリクエストを切り替えることができる.ただし, 現在は非同期リクエストのみ対応している.
+  schema:
+    type: string
+    enum: ["async"]
+    default: "async"

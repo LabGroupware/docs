@@ -1,0 +1,22 @@
+Chat:
+  type: object
+  properties:
+    chatId:
+      type: string
+      example: "01hdr8x2y7y772v18bdv7gdspp"
+      readOnly: true
+    user:
+      $ref: "../user/simple-user.yaml#/NullableSimpleUser"
+    chatRoom:
+      $ref: "../chat-room/simple-chat-room.yaml#/NullableSimpleChatRoom"
+    content:
+      type: string
+      example: "hello!"
+    createdAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"
+    updatedAt:
+      type: string
+      format: date
+      example: "2023-09-24T17:00:00+09:00"
