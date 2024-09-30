@@ -4,7 +4,7 @@ FavoritesResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ FavoritesResponse:
               $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 FavoritesWithTotalCountResponse:
   description: お気に入りルームレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ FavoritesWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -36,7 +36,7 @@ FavoritesWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 FavorsResponse:
   description: お気に入りユーザーレスポンスデータ
@@ -44,7 +44,7 @@ FavorsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -53,7 +53,7 @@ FavorsResponse:
               $ref: "../../schemas/user/user-card.yaml#/UserCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 FavorsWithTotalCountResponse:
   description: お気に入りユーザーレスポンスデータ(合計データ数付与)
@@ -61,7 +61,7 @@ FavorsWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -76,4 +76,4 @@ FavorsWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

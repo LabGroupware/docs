@@ -1,0 +1,253 @@
+AsyncJobStarted:
+  description: 非同期処理開始のデータ
+  type: object
+  required: [success, process, is_valid, data, actions_queue, pending_action_code, actions_stack, code, caption, error_attributes, job_id, job_uri, progress, started_at, expired_at]
+  properties:
+    success: { type: boolean, example: false }
+    process: { type: boolean, example: true }
+    is_valid: { type: boolean, example: true }
+    data: { type: array, nullable: true, example: null }
+    actions_queue:
+      type: array
+      items:
+        type: string
+      example: ["create_user", "create_personal_chat_room", "belong_personal_chat_room", "attach_default_policy"]
+    pending_action_code: { type: string, nullable: true, example: "unique_login_id_validate" }
+    actions_stack: { type: array, nullable: true, example: null }
+    code: { type: integer, example: 800 }
+    caption: { type: string, example: "Async Job Processing" }
+    error_attributes: { type: array, maximum: 0, example: [] }
+    job_id: { type: string, example: "job_565645683389" }
+    job_uri: { type: string, example: "/v1/async/jobs/job_565645683389" }
+    progress: { type: integer, example: 0 }
+    started_at: { type: string, nullable: true, example: 2023-09-24T17:00:00+09:00 }
+    expired_at: { type: string, nullable: true, example: 2023-09-25T17:00:00+09:00 }
+AsyncJobProcessing:
+  description: 非同期処理中のデータ
+  type: object
+  required: [success, process, is_valid, data, actions_queue, pending_action_code, actions_stack, code, caption, error_attributes, job_id, job_uri, progress, started_at, expired_at]
+  properties:
+    success: { type: boolean, example: false }
+    process: { type: boolean, example: true }
+    is_valid: { type: boolean, example: true }
+    data: { type: array, nullable: true, example: null }
+    actions_queue:
+      type: array
+      items:
+        type: string
+      example: ["belong_personal_chat_room", "attach_default_policy"]
+    pending_action_code: { type: string, nullable: true, example: "create_personal_chat_room" }
+    actions_stack:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+      example:
+        - action_code: "create_user"
+          success: true
+          data:
+            user_id: "12345"
+            name: "blank"
+            email: "blank@example.com"
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "unique_login_id_validate"
+          success: true
+          data: []
+          code: 100
+          caption: "ok"
+          error_attributes: null
+    code: { type: integer, example: 800 }
+    caption: { type: string, example: "Async Job Processing" }
+    error_attributes: { type: array, maximum: 0, example: [] }
+    job_id: { type: string, example: "job_565645683389" }
+    job_uri: { type: string, example: "/v1/async/jobs/job_565645683389" }
+    progress: { type: integer, example: 40 }
+    started_at: { type: string, nullable: true, example: 2023-09-24T17:00:00+09:00 }
+    expired_at: { type: string, nullable: true, example: 2023-09-25T17:00:00+09:00 }
+AsyncJobSuccessfully:
+  description: 非同期処理終了のデータ
+  type: object
+  required: [success, process, is_valid, data, actions_queue, pending_action_code, actions_stack, code, caption, error_attributes, job_id, job_uri, progress, started_at, expired_at]
+  properties:
+    success: { type: boolean, example: true }
+    process: { type: boolean, example: false }
+    is_valid: { type: boolean, example: true }
+    data:
+      type: object
+      properties:
+        user_id: { type: string, example: "12345" }
+        personal_chat_room:
+          type: object
+          properties:
+            chat_room_id: { type: string, example: "aaaaa" }
+            name: { type: string, example: "blank personal room" }
+            is_personal: { type: boolean, example: true }
+            created_at: { type: string, example: "2023-09-24T17:00:00+09:00" }
+            updated_at: { type: string, example: "2023-09-24T17:00:00+09:00" }
+        name: { type: string, example: "blank" }
+        email: { type: string, example: "blank@example.com" }
+        created_at: { type: string, example: "2023-09-24T17:00:00+09:00" }
+        updated_at: { type: string, example: "2023-09-24T17:00:00+09:00" }
+    actions_queue: { type: array, maximum: 0, example: [] }
+    pending_action_code: { type: string, nullable: true, example: null }
+    actions_stack:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+      example:
+        - action_code: "attach_default_policy"
+          success: true
+          data:
+            user_id: "12345"
+            policy_id: "xxxxx"
+            created_at: "2023-09-24T17:00:00+09:01"
+            updated_at: "2023-09-24T17:00:00+09:01"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "belong_personal_chat_room"
+          success: true
+          data:
+            user_id: "12345"
+            chat_room_id: "aaaaa"
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "create_personal_chat_room"
+          success: true
+          data:
+            chat_room_id: "aaaaa"
+            name: "blank personal room"
+            is_personal: true
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "create_user"
+          success: true
+          data:
+            user_id: "12345"
+            name: "blank"
+            email: "blank@example.com"
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "unique_login_id_validate"
+          success: true
+          data: []
+          code: 100
+          caption: "ok"
+          error_attributes: null
+    code: { type: integer, example: 801 }
+    caption: { type: string, example: "Async Job Successfully" }
+    error_attributes: { type: array, maximum: 0, example: [] }
+    job_id: { type: string, example: "job_565645683389" }
+    job_uri: { type: string, example: "/v1/async/jobs/job_565645683389" }
+    progress: { type: integer, example: 100 }
+    started_at: { type: string, nullable: true, example: 2023-09-24T17:00:00+09:00 }
+    expired_at: { type: string, nullable: true, example: 2023-09-25T17:00:00+09:00 }
+AsyncJobFailed:
+  description: 非同期処理失敗のデータ
+  type: object
+  required: [success, process, is_valid, data, actions_queue, pending_action_code, actions_stack, code, caption, error_attributes, job_id, job_uri, progress, started_at, expired_at]
+  properties:
+    success: { type: boolean, example: false }
+    process: { type: boolean, example: false }
+    is_valid: { type: boolean, example: true }
+    data: { type: array, nullable: true, example: null }
+    actions_queue:
+      type: array
+      items:
+        type: string
+      example: []
+    pending_action_code: { type: string, nullable: true, example: null }
+    actions_stack:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+      example:
+        - action_code: "create_personal_chat_room"
+          success: true
+          data:
+            chat_room_id: "aaaaa"
+            name: "blank personal room"
+            is_personal: true
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 312
+          caption: "validation error"
+          error_attributes:
+            type: array
+            items:
+              type: object
+              properties:
+                field: { type: string, example: "name" }
+                caption: { type: string, example: "Name must be less than 256 characters" }
+        - action_code: "create_user"
+          success: true
+          data:
+            user_id: "12345"
+            name: "blank"
+            email: "blank@example.com"
+            created_at: "2023-09-24T17:00:00+09:00"
+            updated_at: "2023-09-24T17:00:00+09:00"
+          code: 100
+          caption: "ok"
+          error_attributes: null
+        - action_code: "unique_login_id_validate"
+          success: true
+          data: []
+          code: 100
+          caption: "ok"
+          error_attributes: null
+    code: { type: integer, example: 802 }
+    caption: { type: string, example: "Async Job Failed" }
+    error_attributes:
+      type: array
+      items:
+        type: object
+        properties:
+          action_code: { type: string, example: "create_personal_chat_room" }
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                field: { type: string, example: "name" }
+                caption: { type: string, example: "Name must be less than 256 characters" }
+    job_id: { type: string, example: "job_565645683389" }
+    job_uri: { type: string, example: "/v1/async/jobs/job_565645683389" }
+    progress: { type: integer, example: 100 }
+    started_at: { type: string, nullable: true, example: 2023-09-24T17:00:00+09:00 }
+    expired_at: { type: string, nullable: true, example: 2023-09-25T17:00:00+09:00 }
+AsyncJobNotFound:
+  description: 非同期処理期限切れのデータ
+  type: object
+  required: [success, process, is_valid, data, actions_queue, pending_action_code, actions_stack, code, caption, error_attributes, job_id, job_uri, progress, started_at, expired_at]
+  properties:
+    success: { type: boolean, example: false }
+    process: { type: boolean, example: false }
+    is_valid: { type: boolean, example: false }
+    data: { type: array, nullable: true, example: null }
+    actions_queue: { type: array, maximum: 0, example: [] }
+    pending_action_code: { type: string, nullable: true, example: null }
+    actions_stack: { type: array, nullable: true, example: [] }
+    code: { type: integer, example: 804 }
+    caption: { type: string, example: "Job Not Found" }
+    error_attributes: { type: array, maximum: 0, example: [] }
+    job_id: { type: string, example: "job_565645683389" }
+    job_uri: { type: string, example: "/v1/async/jobs/job_565645683389" }
+    progress: { type: integer, example: 0 }
+    started_at: { type: string, nullable: true, example: null }
+    expired_at: { type: string, nullable: true, example: null }

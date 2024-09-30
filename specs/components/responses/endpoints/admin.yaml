@@ -4,7 +4,7 @@ AdminsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ AdminsResponse:
               $ref: "../../schemas/admin/simple-admin.yaml#/SimpleAdmin"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 AdminsWithTotalCountResponse:
   description: 複数管理者ユーザーレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ AdminsWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -37,7 +37,7 @@ AdminsWithTotalCountResponse:
 
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 AdminResponse:
   description: 管理者ユーザーレスポンスデータ
@@ -45,11 +45,11 @@ AdminResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
             $ref: "../../schemas/admin/admin.yaml#/Admin"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

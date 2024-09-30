@@ -4,7 +4,7 @@ ChatRoomsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ ChatRoomsResponse:
               $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 ChatRoomsWithTotalCountResponse:
   description: 複数チャットルームレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ ChatRoomsWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -36,7 +36,7 @@ ChatRoomsWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 ChatRoomResponse:
   description: チャットルームレスポンスデータ
@@ -44,14 +44,14 @@ ChatRoomResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
             $ref: "../../schemas/chat-room/chat-room.yaml#/ChatRoom"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 ChatRoomCardResponse:
   description: チャットルームカードレスポンスデータ
@@ -59,11 +59,11 @@ ChatRoomCardResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
             $ref: "../../schemas/chat-room/chat-room-card.yaml#/ChatRoomCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

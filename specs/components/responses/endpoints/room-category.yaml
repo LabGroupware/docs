@@ -4,7 +4,7 @@ RoomCategoriesResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ RoomCategoriesResponse:
               $ref: "../../schemas/room-category/simple-room-category.yaml#/SimpleRoomCategory"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 RoomCategoriesWithTotalCountResponse:
   description: 複数ルームカテゴリーレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ RoomCategoriesWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -36,7 +36,7 @@ RoomCategoriesWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 RoomCategoryResponse:
   description: ルームカテゴリーレスポンスデータ
@@ -44,11 +44,11 @@ RoomCategoryResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
             $ref: "../../schemas/room-category/room-category.yaml#/RoomCategory"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

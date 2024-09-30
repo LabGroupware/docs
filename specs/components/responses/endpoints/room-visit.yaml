@@ -4,7 +4,7 @@ VisitedRoomsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ VisitedRoomsResponse:
               $ref: "../../schemas/chat-room/visited-chat-room.yaml#/VisitedChatRoom"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 VisitedRoomsWithTotalCountResponse:
   description: 訪問ルームレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ VisitedRoomsWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -36,7 +36,7 @@ VisitedRoomsWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 VisitorsResponse:
   description: 訪問ユーザーレスポンスデータ
@@ -44,7 +44,7 @@ VisitorsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -53,7 +53,7 @@ VisitorsResponse:
               $ref: "../../schemas/user/visitor.yaml#/Visitor"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 VisitorsWithTotalCountResponse:
   description: 訪問ユーザーレスポンスデータ(合計データ数付与)
@@ -61,7 +61,7 @@ VisitorsWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -76,7 +76,7 @@ VisitorsWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 InUsersResponse:
   description: ルーム内ユーザーレスポンスデータ
@@ -84,7 +84,7 @@ InUsersResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -93,7 +93,7 @@ InUsersResponse:
               $ref: "../../schemas/user/simple-user.yaml#/SimpleUser"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 InUsersWithTotalCountResponse:
   description: ルーム内ユーザーレスポンスデータ(合計データ数付与)
@@ -101,7 +101,7 @@ InUsersWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -116,4 +116,4 @@ InUsersWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

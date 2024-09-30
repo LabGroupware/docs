@@ -4,7 +4,7 @@ FolloweesResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ FolloweesResponse:
               $ref: "../../schemas/user/user-card.yaml#/UserCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 FolloweesWithTotalCountResponse:
   description: フォローレスポンスデータ(合計データ数付与)
@@ -21,7 +21,7 @@ FolloweesWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -36,7 +36,7 @@ FolloweesWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 
 FollowersResponse:
@@ -45,7 +45,7 @@ FollowersResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -54,7 +54,7 @@ FollowersResponse:
               $ref: "../../schemas/user/user-card.yaml#/UserCard"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 FollowersWithTotalCountResponse:
   description: フォロワーレスポンスデータ(合計データ数付与)
@@ -62,7 +62,7 @@ FollowersWithTotalCountResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -77,4 +77,4 @@ FollowersWithTotalCountResponse:
                 example: 120
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }

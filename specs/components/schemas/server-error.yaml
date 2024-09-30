@@ -1,9 +1,9 @@
 ServerError:
   type: object
-  required: [success, data, code, message, errorAttributes]
+  required: [success, data, code, caption, error_attributes]
   properties:
     success: { type: boolean, example: false }
     data: { type: array, nullable: true, example: null }
     code: { type: integer, example: 1 }
-    message: { type: string, example: "システム内でエラーが起こりました" }
-    errorAttributes: { type: array, maximum: 0, example: [] }
+    caption: { type: string, example: "System Server Error" }
+    error_attributes: { type: array, maximum: 0, example: [] }

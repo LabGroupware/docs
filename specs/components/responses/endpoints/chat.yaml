@@ -4,7 +4,7 @@ ChatsResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -13,7 +13,7 @@ ChatsResponse:
               $ref: "../../schemas/chat/chat.yaml#/Chat"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 ChatsWithDataResponse:
   description: 複数チャットレスポンスデータ(付与データあり, total_countもしくはpaginationを指定した場合)
@@ -21,7 +21,7 @@ ChatsWithDataResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
@@ -45,7 +45,7 @@ ChatsWithDataResponse:
                 example: null
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
 
 ChatResponse:
   description: チャットレスポンスデータ
@@ -53,11 +53,11 @@ ChatResponse:
     application/json:
       schema:
         type: object
-        required: [success, data, code, message, errorAttributes]
+        required: [success, data, code, message, error_attributes]
         properties:
           success: { type: boolean, example: true }
           data:
             $ref: "../../schemas/chat/chat.yaml#/Chat"
           code: { type: integer, example: 0 }
           message: { type: string, example: "OK" }
-          errorAttributes: { type: array, maximum: 0, example: [] }
+          error_attributes: { type: array, maximum: 0, example: [] }
