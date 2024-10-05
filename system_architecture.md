@@ -14,11 +14,11 @@
   - メンバーリストの提供, 検索機能.
 
 ### ロール管理サービス (Role Management Service)
-- **責務**: ロールとポリシーの定義と管理.
+- **責務**: ロールとオーソリティの定義と管理.
 - **技術スタック**: Java/Spring Boot, PostgreSQL/MySQL.
 - **主な機能**:
   - ロールの作成, 更新, 削除.
-  - ロールに対するポリシーのアタッチメントと管理.
+  - ロールに対するオーソリティのアタッチメントと管理.
   - ロールとユーザーの関連付け.
 
 ### 認証認可サービス (Authentication and Authorization Service)
@@ -33,7 +33,7 @@
     - メンバー管理サービスとロール管理サービスの変更により, このデータストアも同期させる.
       - ログイン時の読み取り専用という形になるため, CQRSのクエリ専用に近いが, 両方のパターンで利用する.
       - また, 権限に関する整合性はどの場面でも重要であるため, Event SourcingではなくSagaによる変更とする.
-      - 保持する内容は, `loginID`, `password`, `memberID`, `[]policyID`(もしくは`roleID`)となる.
+      - 保持する内容は, `loginID`, `password`, `memberID`, `[]authorityID`(もしくは`roleID`)となる.
 
 ### グループサービス (Group Management Service)
 - **責務**: グループの作成, 更新, 管理.

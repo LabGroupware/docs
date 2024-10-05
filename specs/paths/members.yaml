@@ -1,0 +1,145 @@
+members:
+  get:
+    summary: 複数メンバーの取得
+    description: 複数メンバーの取得
+    tags: ["members"]
+    parameters:
+      - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/LimitParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/OffsetParam"
+      - $ref: "../components/parameters/get-common-parameter.yaml#/PaginationParam"
+      - name: order
+        in: query
+        description: オーダー項目
+        schema:
+          type: string
+          enum: ["create", "name", "follower"]
+          default: "create"
+      # - $ref: "../components/parameters/get-common-parameter.yaml#/WithTotalCountParam"
+    responses:
+      # "200":
+      #   $ref: "../components/responses/endpoints/member.yaml#/MembersResponse"
+      # "200(with total_count)":
+      #   $ref: "../components/responses/endpoints/member.yaml#/MembersWithTotalCountResponse"
+      "4XX":
+        $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+      "5XX":
+        $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  # post:
+  #   summary: メンバーの作成
+  #   description: メンバーの作成
+  #   # security: []
+  #   tags: ["members"]
+  #   parameters:
+  #       - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+  #   requestBody:
+  #     description: 新規登録データ
+  #     required: true
+  #     content:
+  #       application/x-www-form-urlencoded:
+  #         schema:
+  #           type: object
+  #           required: [loginId, password, passwordConfirmation, nickname]
+  #           properties:
+  #             loginId: { type: string, default: "testtest" }
+  #             password:
+  #               { type: string, format: "password", default: "admintest" }
+  #             passwordConfirmation:
+  #               { type: string, format: "password", default: "admintest" }
+  #             nickname: { type: string, default: "作成 メンバー" }
+  #             profilePhoto:
+  #               type: string
+  #               format: binary
+  #   responses:
+  #     "200":
+  #       $ref: "../components/responses/endpoints/auth.yaml#/JwtTokenResponse"
+  #     "4XX":
+  #       $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+  #     "5XX":
+  #       $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  # put:
+  #   summary: 認証メンバー情報の更新
+  #   description: 認証メンバー情報の更新
+  #   # security: []
+  #   tags: ["members"]
+  #   parameters:
+  #       - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+  #   requestBody:
+  #     description: 更新データ
+  #     required: true
+  #     content:
+  #       application/x-www-form-urlencoded:
+  #         schema:
+  #           type: object
+  #           required: [nickname]
+  #           properties:
+  #             nickname: { type: string, default: "更新後 メンバー" }
+  #             profilePhoto:
+  #               type: string
+  #               format: binary
+  #             country:
+  #               type: string
+  #               example: Japan
+  #             description:
+  #               type: string
+  #               example: "よろしくおねがいします"
+  #             email:
+  #               type: string
+  #               example: "test@test.test"
+  #             company:
+  #               type: string
+  #               example: "Selfroom Inc."
+  #             role:
+  #               type: string
+  #               example: "Backend Engineer, Web Designer"
+  #             school:
+  #               type: string
+  #               example: "Kansai University"
+  #   responses:
+  #     "200":
+  #       $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+  #     "4XX":
+  #       $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+  #     "5XX":
+  #       $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+  # delete:
+  #   summary: 認証メンバーの削除
+  #   description: 認証メンバーの削除
+  #   # security: []
+  #   tags: ["members"]
+  #   parameters:
+  #       - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+  #   responses:
+  #     "200":
+  #       $ref: "../components/responses/empty-data-response.yaml#/EmptyDataResponse"
+  #     "4XX":
+  #       $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+  #     "5XX":
+  #       $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+# members_{member_id}:
+#   get:
+#     summary: メンバーの取得
+#     description: メンバーの取得
+#     parameters:
+#       - $ref: "../components/parameters/common-header.yaml#/LangHeader"
+#       - $ref: "#/components/parameters/MemberId"
+#     # security: []
+#     tags: ["members"]
+#     responses:
+#       "200":
+#         $ref: "../components/responses/endpoints/member.yaml#/MemberResponse"
+#       "4XX":
+#         $ref: "../components/responses/4xx-bad-request-response.yaml#/4XX-BadRequestResponse"
+#       "5XX":
+#         $ref: "../components/responses/5xx-server-error-response.yaml#/5XX-ServerErrorResponse"
+
+components:
+  parameters:
+    MemberId:
+      name: member_id
+      in: path
+      description: メンバーID
+      required: true
+      schema:
+        type: string
+        example: "9a5fb3cd-80c7-4d2b-971f-2f1a0ef782f7"

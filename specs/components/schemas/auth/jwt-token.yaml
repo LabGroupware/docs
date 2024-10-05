@@ -1,9 +1,9 @@
 JwtToken: 
   type: object
-  required: [accessToken, expiresIn, tokenType]
+  required: [accessT_token, expiresI_in, token_type]
   properties:
-    accessToken:
+    access_token:
       type: string
       example: "xxxxxxxx"
-    tokenType: { type: string, example: bearer }
-    expiresIn: { type: integer, example: 3600 }
+    token_type: { type: string, example: bearer }
+    expires_in: { type: integer, example: 3600 }
