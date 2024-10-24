@@ -1,9 +1,0 @@
-ServerError:
-  type: object
-  required: [success, data, code, caption, error_attributes]
-  properties:
-    success: { type: boolean, example: false }
-    data: { type: array, nullable: true, example: null }
-    code: { type: integer, example: 1 }
-    caption: { type: string, example: "System Server Error" }
-    error_attributes: { type: array, maximum: 0, example: [] }

@@ -1,6 +1,0 @@
-EmptyDataResponse:
-  description: データのない成功時レスポンスデータ
-  content:
-    application/json:
-      schema:
-        $ref: "../schemas/no-data-success.yaml#/NoDataSuccess"

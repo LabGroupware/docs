@@ -1,6 +1,0 @@
-4XX-BadRequestResponse:
-  description: リクエストエラーレスポンスデータ
-  content:
-    application/json:
-      schema:
-        $ref: "../schemas/request-error.yaml#/RequestError"

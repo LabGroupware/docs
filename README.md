@@ -40,5 +40,4 @@
 4. [`2`より抽出した利点, 欠点より今回比較する上での計測するべき値, 計測方法などを考案する.](./comparison.md)
 5.  [いくつかの機能を持ったマイクロサービスアプリケーションの定義する.](./system_overview.md)
 6.  [`5`をもとにサービス分割を含めたシステム構成を考える.](./system_architecture.md)
-7.  API Gatewayで待ち受けるREST APIの定義を行う.
-8.  `6`で考案されたシステムを`CQRS + Event Sourcing Pattern`と`API Composition + State Based Pattern`の2パターンで実装する.なお, この際に`4`で洗い出された測定を行うための機能を組み込むこととする.
+7.  `6`で考案されたシステムを`CQRS + Event Sourcing Pattern`と`API Composition + State Based Pattern`の2パターンで実装する.なお, この際に`4`で洗い出された測定を行うための機能を組み込むこととする.
