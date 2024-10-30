@@ -17,6 +17,7 @@
 - **Kafka/Confluent Schema Registry(CSR)**: サービス間非同期通信とそのスキーマ定義レジストリ.
 - **debezium**: CDCのための利用.
 - **postgres/mongoDB**: データベース.
+- **Buildpacks**: アプリケーションImageパッケージング.
 
 ## サービス分割
 
