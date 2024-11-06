@@ -18,6 +18,7 @@
 - **debezium**: CDCのための利用.
 - **postgres/mongoDB**: データベース.
 - **Buildpacks**: アプリケーションImageパッケージング.
+- **EventStoreDB**: イベントソーシング用イベントストア.
 
 ## サービス分割
 
